@@ -1,0 +1,36 @@
+<h3>犬一覧</h3>
+ <div class="center">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-xs-12 col-sm-4 col-md-4">
+          <div class="thumbnail message"> 
+            <% if post.image? %>
+              <%= link_to (image_tag post.image.url), post  %>
+            <% end %>       
+         
+          <div class="caption">
+          <h2 clas="message-title"><%= post.title %></h2>   
+          <p><%= link_to "View message", post_path(post),class:"btn btn-default" %></p>
+            <div class="index_icons"> 
+              <% if post.likes.size >= 1 %>
+                <span class="fa fa-heart index_like-icon"></span><%= post.likes.size %> 
+              <% else %>
+                <span class="fa fa-heart index_like-icon_zero"></span><%= post.likes.size %>
+              <% end %>
+
+              <span style="margin-right: 25px;"></span>
+
+             <% if post.comments.size >= 1 %>
+                <span class="fa fa-comments-o index_comments-icon"></span><%= post.comments.size %>  
+              <% else %>
+                <span class="fa fa-comments-o index_comments-icon_zero"></span><%= post.comments.size %> 
+              <% end %>
+          </div>
+        </div>
+       </div> 
+
+      </div>
+    <% end %>
+  </div>
+
+</div>
